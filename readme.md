@@ -1,10 +1,14 @@
 # Text Analyser Script
 
-A short Python project for analysing text files, in order to find the most frequent words. The script uses the natural language processing toolkit (NLTK), to remove 'stopwords', such as common prepositions and pronouns. The script can be passed arguments, to modify the output. See the Usage section for more information. 
+A short Python project for analysing text files, in order to find the most frequent words. The results are passed to a HTML table, and displayed using Bootstrap and a Jinja2 template. The script uses the natural language processing toolkit (NLTK), to remove 'stopwords', such as common prepositions and pronouns. The script can be passed arguments, to modify the output eg only show words that occur more than *x* times. See the Usage section for more information. 
+
+![text_analyser_screenshot](https://github.com/geonaut/Text-analysis-script-Python-NLTK-Jinja-Bootstrap-/blob/master/screenshot.png "screenshot")
 
 ## Installation
 
-Written for Python 2.7. There are no strict dependencies, but some resources are better downloaded once, outside the script.
+Written for Python 2.7. 
+
+You might need to install some NLTK resources. There are commented out download commands at the top of the python file.
 
 * 'punkt' from NLTK
 * 'averaged_perceptron_tagger' from NLTK
@@ -42,4 +46,8 @@ optional arguments:
 ```
 
 ## Future ideas
+
+* Use stemming to group similar words. Eg Americans & Americans
+* Remove plurals
+* Setup 'part of speech' tagging to extract certain types of words, such as verbs or nouns
 
