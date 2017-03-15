@@ -8,10 +8,20 @@ A short Python project for analysing text files, in order to find the most frequ
 
 Written for Python 2.7. 
 
+Modules:
+
+* NLTK
+* Jinja2
+
+```bash
+sudo pip install nltk jinja2
+```
+
 You might need to install some NLTK resources. There are commented out download commands at the top of the python file.
 
 * 'punkt' from NLTK
 * 'averaged_perceptron_tagger' from NLTK
+* 'stopwords' from NLTK
 
 If you have virtualenv installed, you could setup a local virtualenv folder and clone the repo, following:
 
@@ -59,4 +69,5 @@ optional arguments:
 * Remove plurals e.g. American & Americans
 * Setup 'part of speech' tagging to extract certain types of words, such as verbs or nouns
 * Setup input for different files types, including scraped data
+* Have one context sentence per file
 

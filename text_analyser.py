@@ -6,12 +6,12 @@ import os
 import argparse
 import jinja2
 from nltk.corpus import stopwords
-from bs4 import BeautifulSoup as Soup
 from nltk.tokenize import sent_tokenize, word_tokenize,RegexpTokenizer
 import unicodedata
 
 # nltk.download('punkt')
 # nltk.download('averaged_perceptron_tagger')
+# nltk.dowload('stopwords')
 
 parser = argparse.ArgumentParser(description='Text analysis tool for identifying common words and displaying them in a table, along with context')
 group = parser.add_mutually_exclusive_group(required=True)
