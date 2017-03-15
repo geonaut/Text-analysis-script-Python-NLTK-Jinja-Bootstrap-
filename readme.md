@@ -26,10 +26,11 @@ git pull origin master
 
 ## Usage
 
-Run the script from terminal:
+Run the script from terminal, e.g.
 
 ```bash
-python word_counter1.py -d test_docs/ -c 5 -l 6
+python text_analyser.py -d test_docs/ -c 5 -l 6
+python text_analyser.py -f test_docs/doc3.txt
 ```
 
 ```bash
