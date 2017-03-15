@@ -9,9 +9,16 @@ Written for Python 2.7. There are no strict dependencies, but some resources are
 * 'punkt' from NLTK
 * 'averaged_perceptron_tagger' from NLTK
 
-You could setup a local virtualenv folder, following:
+If you have virtualenv installed, you could setup a local virtualenv folder and clone the repo, following:
 
-    
+```bash
+virtualenv text_analyser
+source text_analyser/bin/activate
+cd text_analyser
+git init .
+git remote add origin <this_repo>
+git pull origin master
+```
 
 ## Usage
 
