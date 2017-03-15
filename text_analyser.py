@@ -17,13 +17,15 @@ parser = argparse.ArgumentParser(description='Text analysis tool')
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument('-d','--dir', help='Folder to be analysed', required=False)
 group.add_argument('-f','--file', help='File to be analysed', required=False)
-parser.add_argument('-c','--count', nargs='?', const=1, type=int, default=5, help='Minimum word occurrence (INT)', required=False)
+parser.add_argument('-c','--count', type=int, default=5, help='Minimum word occurrence (INT)', required=False)
 parser.add_argument('-l','--length', type=int, default=3, help='Minimum word length (INT)', required=False)
+parser.add_argument('-s','--sentences', type=int, default=3, help='Number of sentences to display in the context column (INT)', required=False)
 args = vars(parser.parse_args())
 
 count = args['count']
 length = args['length']
 path = args['dir']
+sentences = args['sentences']
 
 def getFileList():
     files = []
@@ -81,24 +83,22 @@ def getSentenceList(word,files,count):
                     sentence_list.append(highlightedSentence)
     return sentence_list[0:c]
 
-def assembleOutput(word_list):
+def assembleOutput(word_list,sentences):
     items = []
     sentenceListHighlighted = []
     sentenceHighlighted = []
     for word in word_list:
         files = getFileList()
         documentList = getContainingFiles(word,files)
-        sentenceList = getSentenceList(word,files,3)
+        sentenceList = getSentenceList(word,files,sentences)
         item = dict(word = word,documents = documentList,sentences = sentenceList)
         items.append(item)
     return items
 
-assembleOutput(word_list)
-
 loader = jinja2.FileSystemLoader('table_template.html')
 env = jinja2.Environment(loader=loader)
 template = env.get_template('')
-output = template.render(items=assembleOutput(word_list))
+output = template.render(items=assembleOutput(word_list,sentences))
 
 Html_file= open("output.html","w")
 Html_file.write(str(output))
