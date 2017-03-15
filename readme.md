@@ -55,8 +55,8 @@ optional arguments:
 
 ## Future ideas
 
-* Use stemming to group similar words. Eg Americans & Americans
-* Remove plurals
+* Use stemming to group similar words. e.g. American & America
+* Remove plurals e.g. American & Americans
 * Setup 'part of speech' tagging to extract certain types of words, such as verbs or nouns
 * Setup input for different files types, including scraped data
 
