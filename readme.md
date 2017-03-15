@@ -17,12 +17,19 @@ Modules:
 sudo pip install nltk jinja2
 ```
 
-You might need to install some NLTK resources. There are commented out download commands at the top of the python file, or you can do this directly from within Python e.g. `python -> import nltk -> nltk.download('punkt')`
+You might need to install some NLTK resources:
 
 * 'punkt' from NLTK
 * 'averaged_perceptron_tagger' from NLTK
 * 'stopwords' from NLTK
 
+There are commented out download commands at the top of the python file, or you can do this directly from within Python e.g. 
+
+```bash
+python
+>>>import nltk
+>>>nltk.download('punkt')
+```
 If you have virtualenv installed, you could setup a local virtualenv folder and clone the repo, with the following:
 
 ```bash
