@@ -13,16 +13,16 @@ import unicodedata
 # nltk.download('punkt')
 # nltk.download('averaged_perceptron_tagger')
 
-parser = argparse.ArgumentParser(description='Text analysis tool')
+parser = argparse.ArgumentParser(description='Text analysis tool for identifying common words and displaying them in a table, along with context')
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument('-d','--dir', help='Folder to be analysed', required=False)
 group.add_argument('-f','--file', help='File to be analysed', required=False)
-parser.add_argument('-c','--count', type=int, default=5, help='Minimum word occurrence (INT)', required=False)
+parser.add_argument('-o','--occurrence', type=int, default=5, help='Minimum word occurrence (INT)', required=False)
 parser.add_argument('-l','--length', type=int, default=4, help='Minimum word length (INT)', required=False)
 parser.add_argument('-s','--sentences', type=int, default=3, help='Number of sentences to display in the context column (INT)', required=False)
 args = vars(parser.parse_args())
 
-count = args['count']
+count = args['occurrence']
 length = args['length']
 path = args['dir']
 sentences = args['sentences']

@@ -32,17 +32,24 @@ Run the script from terminal:
 python word_counter1.py -d test_docs/ -c 5 -l 6
 ```
 
-Arguments:
-
 ```bash
+usage: text_analyser.py [-h] (-d DIR | -f FILE) [-o OCCURRENCE] [-l LENGTH]
+                        [-s SENTENCES]
+
+Text analysis tool for identifying common words and displaying them in a
+table, along with context
+
 optional arguments:
   -h, --help            show this help message and exit
   -d DIR, --dir DIR     Folder to be analysed
   -f FILE, --file FILE  File to be analysed
-  -c COUNT, --count COUNT
+  -o OCCURRENCE, --occurrence OCCURRENCE
                         Minimum word occurrence (INT)
   -l LENGTH, --length LENGTH
                         Minimum word length (INT)
+  -s SENTENCES, --sentences SENTENCES
+                        Number of sentences to display in the context column
+                        (INT)
 ```
 
 ## Future ideas
@@ -50,4 +57,5 @@ optional arguments:
 * Use stemming to group similar words. Eg Americans & Americans
 * Remove plurals
 * Setup 'part of speech' tagging to extract certain types of words, such as verbs or nouns
+* Setup input for different files types, including scraped data
 
