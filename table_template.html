@@ -1,0 +1,24 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<title>Test Page</title>
+</head>
+<body>
+<table class="table">
+<thead>
+  <tr>
+    <th>Word</th>
+    <th>Documents</th>
+    <th>Context</th>
+  </tr>
+ </thead>
+{% for item in items %}
+<TR>
+   <TD>{{item.word}}</TD>
+   <TD>{{item.documents|join(', ')}}</TD>
+   <TD>{{item.sentences|join('<br> ')}}</TD>
+</TR>
+{% endfor %}
+</table>
+</body>
+</html>
