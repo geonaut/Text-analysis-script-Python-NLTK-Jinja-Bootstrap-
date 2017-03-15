@@ -6,8 +6,8 @@ A short Python project for analysing text files, in order to find the most frequ
 
 Written for Python 2.7. There are no strict dependencies, but some resources are better downloaded once, outside the script.
 
-*'punkt' from NLTK
-*'averaged_perceptron_tagger' from NLTK
+* 'punkt' from NLTK
+* 'averaged_perceptron_tagger' from NLTK
 
 You could setup a local virtualenv folder, following:
 
@@ -18,7 +18,8 @@ You could setup a local virtualenv folder, following:
 Run the script from terminal:
 
 ```bash
-python word_counter1.py -d test_docs/ -c 5 -l 6```
+python word_counter1.py -d test_docs/ -c 5 -l 6
+```
 
 Arguments:
 
@@ -30,7 +31,8 @@ optional arguments:
   -c COUNT, --count COUNT
                         Minimum word occurrence (INT)
   -l LENGTH, --length LENGTH
-                        Minimum word length (INT)```
+                        Minimum word length (INT)
+```
 
 ## Future ideas
 
