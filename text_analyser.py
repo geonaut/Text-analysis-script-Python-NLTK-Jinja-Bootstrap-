@@ -26,11 +26,12 @@ count = args['count']
 length = args['length']
 path = args['dir']
 sentences = args['sentences']
+file = args['file']
 
 def getFileList():
     files = []
     if args['file']:
-        files = args['file']
+        files.append(args['file'])
     if args['dir']:
         path = args['dir']
         files = glob.glob(os.path.join(path, '*.txt'))
@@ -60,33 +61,51 @@ word_list = list(filterText(getFileList(),count,length))
 
 def getContainingFiles(word,files):
     filenames = []
-    for filename in glob.glob(os.path.join(path, '*.txt')):
-        with open(filename) as f:
-            text = f.read().decode("utf-8")
-            if word in text:
-                filenames.append(filename)
+    if len(files) > 1:
+        for filename in glob.glob(os.path.join(path, '*.txt')):
+            with open(filename) as f:
+                text = f.read().decode("utf-8")
+                if word in text:
+                    filenames.append(filename)
+    else:
+        files = file
+        with open(files) as f:
+                text = f.read().decode("utf-8")
+                if word in text:
+                    filenames.append(file)
     return filenames
 
-def getSentenceList(word,files,count):
-    c = count
+def getSentenceList(word,files,sentences):
+    s = sentences
     sentence_list = []
-    for filename in glob.glob(os.path.join(path, '*.txt')):
-        with open(filename) as f:
-            text = f.read().decode("utf-8")
-            sentences = (sent_tokenize(text))
-            for sentence in sentences:
-                if word in sentence:
-                    sentence = unicodedata.normalize('NFKD', sentence).encode('ascii','ignore')
-                    toreplace = "<b>\g<0></b>"
-                    pattern = re.compile(re.escape(word), re.I)
-                    highlightedSentence = (re.sub(pattern,toreplace,sentence))
-                    sentence_list.append(highlightedSentence)
-    return sentence_list[0:c]
+    if len(files) > 1:
+        for filename in glob.glob(os.path.join(path, '*.txt')):
+            with open(filename) as f:
+                text = f.read().decode("utf-8")
+                sentences = (sent_tokenize(text))
+                for sentence in sentences:
+                    if word in sentence:
+                        sentence = unicodedata.normalize('NFKD', sentence).encode('ascii','ignore')
+                        toreplace = "<b>\g<0></b>"
+                        pattern = re.compile(re.escape(word), re.I)
+                        highlightedSentence = (re.sub(pattern,toreplace,sentence))
+                        sentence_list.append(highlightedSentence)
+    else:
+        files = file
+        with open(files) as f:
+               text = f.read().decode("utf-8")
+               sentences = (sent_tokenize(text))
+               for sentence in sentences:
+                   if word in sentence:
+                       sentence = unicodedata.normalize('NFKD', sentence).encode('ascii','ignore')
+                       toreplace = "<b>\g<0></b>"
+                       pattern = re.compile(re.escape(word), re.I)
+                       highlightedSentence = (re.sub(pattern,toreplace,sentence))
+                       sentence_list.append(highlightedSentence)
+    return sentence_list[0:s]
 
 def assembleOutput(word_list,sentences):
     items = []
-    sentenceListHighlighted = []
-    sentenceHighlighted = []
     for word in word_list:
         files = getFileList()
         documentList = getContainingFiles(word,files)
