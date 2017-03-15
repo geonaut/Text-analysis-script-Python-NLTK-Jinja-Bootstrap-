@@ -18,7 +18,7 @@ group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument('-d','--dir', help='Folder to be analysed', required=False)
 group.add_argument('-f','--file', help='File to be analysed', required=False)
 parser.add_argument('-c','--count', type=int, default=5, help='Minimum word occurrence (INT)', required=False)
-parser.add_argument('-l','--length', type=int, default=3, help='Minimum word length (INT)', required=False)
+parser.add_argument('-l','--length', type=int, default=4, help='Minimum word length (INT)', required=False)
 parser.add_argument('-s','--sentences', type=int, default=3, help='Number of sentences to display in the context column (INT)', required=False)
 args = vars(parser.parse_args())
 
@@ -61,47 +61,27 @@ word_list = list(filterText(getFileList(),count,length))
 
 def getContainingFiles(word,files):
     filenames = []
-    if len(files) > 1:
-        for filename in glob.glob(os.path.join(path, '*.txt')):
-            with open(filename) as f:
-                text = f.read().decode("utf-8")
-                if word in text:
-                    filenames.append(filename)
-    else:
-        files = file
-        with open(files) as f:
-                text = f.read().decode("utf-8")
-                if word in text:
-                    filenames.append(file)
+    for filename in files:
+        with open(filename) as f:
+            text = f.read().decode("utf-8")
+            if word in text:
+                filenames.append(filename)
     return filenames
 
 def getSentenceList(word,files,sentences):
     s = sentences
     sentence_list = []
-    if len(files) > 1:
-        for filename in glob.glob(os.path.join(path, '*.txt')):
-            with open(filename) as f:
-                text = f.read().decode("utf-8")
-                sentences = (sent_tokenize(text))
-                for sentence in sentences:
-                    if word in sentence:
-                        sentence = unicodedata.normalize('NFKD', sentence).encode('ascii','ignore')
-                        toreplace = "<b>\g<0></b>"
-                        pattern = re.compile(re.escape(word), re.I)
-                        highlightedSentence = (re.sub(pattern,toreplace,sentence))
-                        sentence_list.append(highlightedSentence)
-    else:
-        files = file
-        with open(files) as f:
-               text = f.read().decode("utf-8")
-               sentences = (sent_tokenize(text))
-               for sentence in sentences:
-                   if word in sentence:
-                       sentence = unicodedata.normalize('NFKD', sentence).encode('ascii','ignore')
-                       toreplace = "<b>\g<0></b>"
-                       pattern = re.compile(re.escape(word), re.I)
-                       highlightedSentence = (re.sub(pattern,toreplace,sentence))
-                       sentence_list.append(highlightedSentence)
+    for filename in files:
+        with open(filename) as f:
+            text = f.read().decode("utf-8")
+            sentences = (sent_tokenize(text))
+            for sentence in sentences:
+                if word in sentence:
+                    sentence = unicodedata.normalize('NFKD', sentence).encode('ascii','ignore')
+                    toreplace = "<b>\g<0></b>"
+                    pattern = re.compile(re.escape(word), re.I)
+                    highlightedSentence = (re.sub(pattern,toreplace,sentence))
+                    sentence_list.append(highlightedSentence)
     return sentence_list[0:s]
 
 def assembleOutput(word_list,sentences):
