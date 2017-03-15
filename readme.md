@@ -1,6 +1,6 @@
 # Text Analyser Script
 
-A short Python project for analysing text files, in order to find the most frequent words. The results are passed to a HTML table, and displayed using Bootstrap and a Jinja2 template. The script uses the natural language processing toolkit (NLTK), to remove 'stopwords', such as common prepositions and pronouns. The script can be passed arguments, to modify the output eg only show words that occur more than *x* times. See the Usage section for more information. 
+A short Python project for analysing text files, in order to find the most frequent words. The results are passed to a HTML table, and displayed using Bootstrap and a Jinja2 template. The script uses the natural language processing toolkit (NLTK), to remove 'stopwords', such as common prepositions and pronouns. The script can be passed arguments, to modify the output e.g. only show words that occur more than *x* times. See the Usage section for more information. 
 
 ![text_analyser_screenshot](https://github.com/geonaut/Text-analysis-script-Python-NLTK-Jinja-Bootstrap-/blob/master/screenshot.png "screenshot")
 
@@ -17,13 +17,13 @@ Modules:
 sudo pip install nltk jinja2
 ```
 
-You might need to install some NLTK resources. There are commented out download commands at the top of the python file.
+You might need to install some NLTK resources. There are commented out download commands at the top of the python file, or you can do this directly from within Python e.g. `python -> import nltk -> nltk.download('punkt')`
 
 * 'punkt' from NLTK
 * 'averaged_perceptron_tagger' from NLTK
 * 'stopwords' from NLTK
 
-If you have virtualenv installed, you could setup a local virtualenv folder and clone the repo, following:
+If you have virtualenv installed, you could setup a local virtualenv folder and clone the repo, with the following:
 
 ```bash
 virtualenv text_analyser
@@ -70,4 +70,6 @@ optional arguments:
 * Setup 'part of speech' tagging to extract certain types of words, such as verbs or nouns
 * Setup input for different files types, including scraped data
 * Have one context sentence per file
+* Sort the table by word frequency
+* Display the word frequency after repsective filenames.
 
